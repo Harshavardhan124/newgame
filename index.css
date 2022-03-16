@@ -1,0 +1,255 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+.main-head-container{
+    width: 100vw;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.main-head {
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    color: #7d34eb;
+    animation: moveLeft 2s;
+}
+.middle-head{
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    color: #4034eb;
+    animation: moveRight 2s;
+}
+.last-head{
+    font-family: sans-serif;
+    font-size: 40px;
+    font-weight: bold;
+    margin: 0;
+    color: #348feb;
+    animation: delayedVisible 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: backwards;
+}
+.grid {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(3, auto);
+}
+
+.boxes {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.boxes:first-child,
+.boxes:nth-child(2),
+.boxes:nth-child(3) {
+    border-top: none;
+}
+
+.boxes:nth-child(3n + 1) {
+    border-left: none;
+}
+.boxes:nth-child(3n + 3) {
+    border-right: none;
+}
+
+
+.boxes:nth-child(7),
+.boxes:nth-child(8),
+.boxes:last-child {
+    border-bottom: none;
+}
+
+.boxes.x,
+.boxes.o {
+    cursor: not-allowed;
+}
+
+.boxes.x::after,
+.boxes.x::before {
+    position: absolute;
+    content: '';
+    width: 14px;
+    height: 90px;
+    background-color: black;
+    animation: xtransitionIn 0.7s;
+}
+
+.grid.x .boxes:not(.x):not(.o):hover::before,
+.grid.x .boxes:not(.x):not(.o):hover::after {
+    position: absolute;
+    content: '';
+    width: 14px;
+    height: 90px;
+    background-color: lightgray;
+}
+
+.boxes.x::after,
+.grid.x .boxes:not(.x):not(.o):hover::after {
+    transform: rotate(45deg);
+}
+
+.boxes.x::before,
+.grid.x .boxes:not(.x):not(.o):hover::before {
+    transform: rotate(-45deg);
+}
+
+.boxes.o::after,
+.boxes.o::before {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    animation: transitionIn 0.7s;
+}
+
+.grid.o .boxes:not(.x):not(.o):hover::before,
+.grid.o .boxes:not(.x):not(.o):hover::after {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+}
+
+.boxes.o::before {
+    width: 85px;
+    height: 85px;
+    background-color: black;
+}
+
+.grid.o .boxes:not(.x):not(.o):hover::before {
+    width: 85px;
+    height: 85px;
+    background-color: lightgrey;
+}
+
+.boxes.o::after,
+.grid.o .boxes:not(.x):not(.o):hover::after {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+}
+
+@keyframes xtransitionIn {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 90px;
+    }
+}
+
+@keyframes transitionIn {
+    from{
+        opacity: 0;
+    } 
+    to {
+        opacity: 1;
+    }
+}
+
+.winning-container{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+.full-container{
+    width: 100vw;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: finalwinnermove 1.5s;
+    animation-fill-mode: forwards;
+}
+.winning-text,
+.winner-text {
+    color: lightcoral;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 72px;
+    margin: 0;
+}
+
+.winner-text {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.restart-btn {
+    background-color: #ffffff;
+    border: 0px solid;
+    border-radius: 10px;
+    font-size: 22px;
+    padding: 10px;
+    font-weight: bold;
+    color: #24d6c1;
+}
+
+.winning-container.show{
+    display: flex;
+}
+
+@keyframes finalwinnermove {
+    from {
+        top: 10%;
+    }
+    to {
+        top: 50%;
+    }
+}
+
+@keyframes moveLeft {
+    from {
+        transform: translateX(80px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes moveRight {
+    from {
+        transform: translateX(-80px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+}
+
+@keyframes delayedVisible {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
