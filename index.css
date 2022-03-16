@@ -3,6 +3,7 @@
 }
 body {
     margin: 0;
+    position: relative;
 }
 .main-head-container{
     width: 100vw;
@@ -11,6 +12,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    overflow: hidden;
 }
 .main-head {
     font-family: sans-serif;
