@@ -50,10 +50,11 @@ body {
 }
 
 .boxes {
+    background-color: lightblue;
     width: 100px;
     height: 100px;
     position: relative;
-    border: 1px solid black;
+    border: 2px solid white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -92,7 +93,7 @@ body {
     width: 14px;
     height: 90px;
     background-color: black;
-    animation: xtransitionIn 0.7s;
+    animation: xtransitionIn 0.5s;
 }
 
 .grid.x .boxes:not(.x):not(.o):hover::before,
@@ -101,7 +102,7 @@ body {
     content: '';
     width: 14px;
     height: 90px;
-    background-color: lightgray;
+    background-color: #f1fad4;
 }
 
 .boxes.x::after,
@@ -119,7 +120,7 @@ body {
     position: absolute;
     content: '';
     border-radius: 50%;
-    animation: transitionIn 0.7s;
+    animation: transitionIn 0.5s;
 }
 
 .grid.o .boxes:not(.x):not(.o):hover::before,
@@ -138,14 +139,14 @@ body {
 .grid.o .boxes:not(.x):not(.o):hover::before {
     width: 85px;
     height: 85px;
-    background-color: lightgrey;
+    background-color: #f1fad4;
 }
 
 .boxes.o::after,
 .grid.o .boxes:not(.x):not(.o):hover::after {
     width: 60px;
     height: 60px;
-    background-color: white;
+    background-color: lightblue;
 }
 
 @keyframes xtransitionIn {
@@ -183,7 +184,7 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    animation: finalwinnermove 1.5s;
+    animation: finalwinnermove 1.3s;
     animation-fill-mode: forwards;
 }
 .winning-text,
@@ -208,6 +209,10 @@ body {
     padding: 10px;
     font-weight: bold;
     color: #24d6c1;
+    animation: delayedVisible 0.5s;
+    animation-delay: 0.7s;
+    animation-fill-mode: backwards;
+
 }
 
 .winning-container.show{
