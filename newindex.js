@@ -53,6 +53,7 @@ function endGame(draw, currentClass){
     if(draw){
         winningTextEl.textContent = 'XO';
         winnerTextEl.textContent = 'DRAW!';
+        winningConEl.classList.add('show');
     } else {
         if(currentClass === oclass){
             winningTextEl.textContent = 'O';
@@ -61,10 +62,6 @@ function endGame(draw, currentClass){
             winningTextEl.textContent = 'X';
             winnerTextEl.textContent = 'WINNER!';
         }
-    }
-    if(draw){
-        winningConEl.classList.add('show');
-    } else {
         setTimeout(function() {
             winningConEl.classList.add('show');
         }, 400);
