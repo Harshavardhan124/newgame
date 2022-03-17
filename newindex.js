@@ -64,7 +64,7 @@ function endGame(draw, currentClass){
         }
         setTimeout(function() {
             winningConEl.classList.add('show');
-        }, 400);
+        }, 1000);
     }
 }
 
