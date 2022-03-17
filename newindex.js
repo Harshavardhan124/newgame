@@ -62,9 +62,13 @@ function endGame(draw, currentClass){
             winnerTextEl.textContent = 'WINNER!';
         }
     }
-    setTimeout(function() {
+    if(draw){
         winningConEl.classList.add('show');
-    }, 1500);
+    } else {
+        setTimeout(function() {
+            winningConEl.classList.add('show');
+        }, 400);
+    }
 }
 
 function isdraw() {
@@ -114,6 +118,10 @@ function checkWin(){
                 lineEl.style.width = "250px";
             }
             lineEl.style.transform = `rotate(${e[3]}deg) translate(${e[4]}px, ${e[5]}px)`;
+            boxEl.forEach(box => {
+                box.removeEventListener('click', onClickBox);
+            });
+            gridEl.classList.remove(xclass);
         }
     });
     if(isFound){

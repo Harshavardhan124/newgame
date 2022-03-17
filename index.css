@@ -50,9 +50,8 @@ body {
 .line {
     background-color: #fcff69;
     height: 5px;
-    width: 0;
     position: absolute;
-    transition:  width 1s ease-in-out;
+    transition:  width 0.5s ease-in-out;
     z-index: 1;
     border-radius: 2px;
 }
