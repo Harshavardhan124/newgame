@@ -40,9 +40,23 @@ body {
     animation-delay: 1.5s;
     animation-fill-mode: backwards;
 }
-.grid {
-    width: 100vw;
+.game-container {
+    display: flex;
     height: 100vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.line {
+    background-color: #fcff69;
+    height: 5px;
+    width: 0;
+    position: absolute;
+    transition:  width 1s ease-in-out;
+    z-index: 1;
+    border-radius: 2px;
+}
+.grid {
     display: grid;
     justify-content: center;
     align-content: center;
@@ -61,26 +75,6 @@ body {
     cursor: pointer;
 }
 
-.boxes:first-child,
-.boxes:nth-child(2),
-.boxes:nth-child(3) {
-    border-top: none;
-}
-
-.boxes:nth-child(3n + 1) {
-    border-left: none;
-}
-.boxes:nth-child(3n + 3) {
-    border-right: none;
-}
-
-
-.boxes:nth-child(7),
-.boxes:nth-child(8),
-.boxes:last-child {
-    border-bottom: none;
-}
-
 .boxes.x,
 .boxes.o {
     cursor: not-allowed;
@@ -92,7 +86,7 @@ body {
     content: '';
     width: 14px;
     height: 90px;
-    background-color: black;
+    background-color: #3d6c8a;
     animation: xtransitionIn 0.5s;
 }
 
@@ -133,7 +127,7 @@ body {
 .boxes.o::before {
     width: 85px;
     height: 85px;
-    background-color: black;
+    background-color: #3d6c8a;
 }
 
 .grid.o .boxes:not(.x):not(.o):hover::before {
@@ -176,6 +170,7 @@ body {
     bottom: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
 }
 .full-container{
     width: 100vw;

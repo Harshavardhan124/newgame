@@ -4,18 +4,19 @@ const winningTextEl = document.getElementById('winningText');
 const winnerTextEl = document.getElementById('winnerText');
 const winningConEl = document.getElementById('winningContainer');
 const restartBtnEl = document.getElementById('restartBtn');
+const lineEl = document.getElementById('line');
 const xclass = 'x';
 const oclass = 'o';
 
 const win_combintaions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
+    [0, 1, 2, 0, 25, 47],
+    [3, 4, 5, 0, 25, 147],
+    [6, 7, 8, 0, 25, 247],
+    [0, 3, 6, 90, 148, 75],
+    [1, 4, 7, 90, 148, -25],
+    [2, 5, 8, 90, 148, -125],
+    [0, 4, 8, 45, 105, 105],
+    [2, 4, 6, 135, 105, -104]
 ];
 
 startGame();
@@ -31,13 +32,14 @@ function startGame() {
     });
     onHover();
     winningConEl.classList.remove('show');
+    lineEl.style.width = '0';
 }
 
 function onClickBox(e) {
     const box = e.target;
     const currentClass = xclass;
     placeMark(box, currentClass);
-    if(checkWin(currentClass)) {
+    if(checkWin()) {
         endGame(false, currentClass);
     } else if(isdraw()){
         endGame(true, currentClass);
@@ -60,7 +62,9 @@ function endGame(draw, currentClass){
             winnerTextEl.textContent = 'WINNER!';
         }
     }
-    winningConEl.classList.add('show');
+    setTimeout(function() {
+        winningConEl.classList.add('show');
+    }, 1500);
 }
 
 function isdraw() {
@@ -85,7 +89,7 @@ function placeOMark() {
         const random = Math.floor(Math.random() * indexList.length);
         boxEl[indexList[random]].classList.add(oclass);
         boxEl[indexList[random]].removeEventListener('click', onClickBox);
-        if(checkWin(oclass)) {
+        if(checkWin()) {
             endGame(false, oclass);
         } else if (isdraw()) {
             endGame(true, currentClass);
@@ -97,10 +101,24 @@ function onHover() {
     gridEl.classList.add(xclass);
 }
 
-function checkWin(currentClass){
-    return win_combintaions.some(combination => {
-        return combination.every(index => {
-            return boxEl[index].classList.contains(currentClass);
-        })
-    })
+function checkWin(){
+    let isFound = false;
+    let diagonal_array_1 = [0, 4, 8];
+    let diagonal_array_2 = [2, 4, 6];
+    win_combintaions.forEach(e => {
+        if(typeof(boxEl[e[0]].classList[1]) !== 'undefined' && (boxEl[e[0]].classList[1] === boxEl[e[1]].classList[1]) && (boxEl[e[2]].classList[1] === boxEl[e[1]].classList[1])) {
+            isFound = true;
+            if(diagonal_array_1.every(val => e.includes(val)) || diagonal_array_2.every(val => e.includes(val))) {
+                lineEl.style.width = "300px";
+            } else {
+                lineEl.style.width = "250px";
+            }
+            lineEl.style.transform = `rotate(${e[3]}deg) translate(${e[4]}px, ${e[5]}px)`;
+        }
+    });
+    if(isFound){
+        return true;
+    } else {
+        return false;
+    }
 }
