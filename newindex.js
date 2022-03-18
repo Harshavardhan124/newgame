@@ -44,8 +44,8 @@ function onClickBox(e) {
     } else if(isdraw()){
         endGame(true, currentClass);
     } else {
-        placeOMark();
         onHover();
+        placeOMark();
     }    
 }
 
